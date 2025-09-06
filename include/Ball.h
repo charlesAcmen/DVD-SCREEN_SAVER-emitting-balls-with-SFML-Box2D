@@ -3,6 +3,7 @@
 
 class Ball : public Entity {
 public:
-    Ball(b2WorldId world, float radiusPx, sf::Vector2f startPosPx);
+    Ball(b2WorldId world, float radiusPx, sf::Vector2f startPosPx, sf::Vector2f velocityPx);
     void update() override;
+protected:
 };
