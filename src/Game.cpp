@@ -3,6 +3,8 @@
 #include "Wall.h"
 #include <memory>
 #include <random>
+#include <filesystem>
+#include <iostream>
 using namespace std;
 
 mt19937 rng{random_device{}()};
@@ -23,7 +25,17 @@ void Game::run(){
     entities.emplace_back(make_unique<Wall>(world, sf::Vector2f{10.0f, WINDOW_H}, sf::Vector2f{5.0f, WINDOW_H / 2.0f}));
     entities.emplace_back(make_unique<Wall>(world, sf::Vector2f{10.0f, WINDOW_H}, sf::Vector2f{WINDOW_W - 5.0f, WINDOW_H / 2.0f}));
 
+
+    sf::Font font;
+
+    font.loadFromFile("../assets/arial.ttf");
+    sf::Text fpsText("", font, 18);
+    fpsText.setFillColor(sf::Color::White);
+    fpsText.setPosition(10, 10);
+
+
     sf::Clock clock;
+    sf::Clock fpsClock;
     sf::Time elapsedSinceShot = sf::Time::Zero;
     while (window.isOpen()) {
         sf::Event ev;
@@ -61,7 +73,13 @@ void Game::run(){
         for (const auto& entity : entities) {
             entity->draw(window);
         }
-        
+
+        float frameTime = fpsClock.restart().asSeconds();
+        float fps = 1.0f / frameTime;
+        fpsText.setString("FPS: " + std::to_string((int)fps));
+
+        window.draw(fpsText); // 在所有实体都画完后
+
         window.display();
     }
 

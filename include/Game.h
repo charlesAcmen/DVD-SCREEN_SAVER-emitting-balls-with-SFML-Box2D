@@ -12,7 +12,7 @@ public:
     static constexpr float PPM = 80.0f;
     static constexpr float INV_PPM = 1.0f / PPM;
 
-    static const int frameRate = 60;
+    static const int frameRate = 144;
     static constexpr float TIME_STEP = 1.0f / frameRate;
     static const int SUBSTEP_COUNT = 4;
 
