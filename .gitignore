@@ -1,0 +1,9 @@
+# ---- 编译生成目录 ----
+/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# ---- VSCode 配置 ----
+.vscode/
